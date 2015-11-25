@@ -6,13 +6,13 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-} = React;
+      AppRegistry,
+      StyleSheet,
+      Text,
+      View,
+      } = React;
 
-var test1 = React.createClass({
+var ReduxRouter = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
@@ -49,4 +49,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('test1', () => test1);
+AppRegistry.registerComponent('ReduxRouter', () => ReduxRouter);

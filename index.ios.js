@@ -1,10 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
-var React = require('react-native');
-var { AppRegistry, } = React;
-var WealthApp = require('./test');
-AppRegistry.registerComponent('WealthApp', () => WealthApp);
+import React from 'react-native';
+import AppContainer from './app/containers/index';
+var { AppRegistry } = React;
+AppRegistry.registerComponent('WealthApp', () => AppContainer);
