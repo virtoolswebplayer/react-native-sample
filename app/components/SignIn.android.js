@@ -1,7 +1,7 @@
 'use strict';
 
-import React, { Component, StyleSheet, Text, View,TextInput,Image,TouchableHighlight } from 'react-native';
-
+import React, { Component, StyleSheet, TextInput,Image,TouchableHighlight } from 'react-native';
+import Animatable,{View,Text} from 'react-native-animatable';
 import Dimensions from 'Dimensions';
 let windowSize = Dimensions.get('window');
 
@@ -11,23 +11,16 @@ const assets = {
 
 export default class SignIn extends Component {
 
-  getInitialState() {
-    return {
-      username: '',
-      password: ''
-    }
-  }
-
   render() {
     const { actions } = this.props;
 
     return (
       <View style={styles.container}>
-        <Image style={styles.bg} source={{uri: 'http://i.imgur.com/xlQ56UK.jpg'}}/>
-        <View style={styles.header}>
-          <Image style={styles.mark} source={require('../../assets/logo.png')}/>
+        <Image style={styles.bg} source={require('../../assets/loginBg.jpg')}/>
+        <View animation="fadeIn" delay={100} style={styles.header}>
+          <Image style={styles.logo} source={require('../../assets/logo.png')}/>
         </View>
-        <View style={styles.inputs}>
+        <View style={styles.inputs}  animation="fadeIn" delay={300}>
           <View style={styles.inputContainer}>
             <Image style={styles.inputUsername} source={{uri: 'http://i.imgur.com/iVVVMRX.png'}}/>
             <TextInput
@@ -52,7 +45,7 @@ export default class SignIn extends Component {
           </View>
         </View>
         <TouchableHighlight onPress={actions.routes.tabBar.tab1()}>
-          <View style={styles.signin}>
+          <View style={styles.signin}  animation="fadeIn" delay={500}>
             <Text style={styles.whiteFont}>马上登陆</Text>
           </View>
         </TouchableHighlight>
@@ -79,13 +72,13 @@ var styles = StyleSheet.create({
   header: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: .5,
+    flex: 0.5,
     backgroundColor: 'transparent'
   },
-  mark: {
-    width: 300,
+  logo: {
+    width: 200,
     height: 200,
-    resizeMode: Image.resizeMode.contain
+    resizeMode: Image.resizeMode.stretch
   },
   signin: {
     backgroundColor: '#FF3366',
@@ -121,9 +114,9 @@ var styles = StyleSheet.create({
   input: {
     position: 'absolute',
     left: 61,
-    top: 12,
+    top: 0,
     right: 0,
-    height: 20,
+    height: 50,
     fontSize: 14
   },
   forgotContainer: {

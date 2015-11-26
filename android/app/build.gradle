@@ -63,10 +63,19 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+            release {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword "3619323"
+                keyAlias "my-key-alias"
+                keyPassword "3619323"
+            }
+    }
     buildTypes {
         release {
             minifyEnabled false  // Set this to true to enable Proguard
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release //添加这句话引用签名配置
         }
     }
 }
@@ -75,4 +84,5 @@ dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:0.14.+"
+    compile project(':react-native-icons')
 }

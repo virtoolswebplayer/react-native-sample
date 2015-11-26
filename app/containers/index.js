@@ -3,12 +3,15 @@
  */
 'use strict';
 
-import React, { Component } from 'react-native';
+import React, { Component,Platform } from 'react-native';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux/native';
-
 import * as reducers from '../reducers';
-import Application from './app';
+
+import AppIos from './app.ios';
+import AppAndroid from './app.android'
+
+var Application = (Platform.OS === 'ios') ? AppIos : AppAndroid
 
 const reducer = combineReducers(reducers);
 const store = createStore(reducer);

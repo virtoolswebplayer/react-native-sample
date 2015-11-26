@@ -16,10 +16,17 @@ import {
   TabRoute
 } from 'react-native-router-redux';
 import Detail from '../components/Detail';
+import SignIn from '../components/SignIn.ios';
+
 import Master from '../components/Master';
-import SignIn from '../components/SignIn';
-import Leaderboard from '../components/Leaderboard';
+
 import ProductNews from '../components/ProductNews';
+import Leaderboard from '../components/Leaderboard';
+import Achievement from '../components/Achievement';
+import Profile from '../components/Profile';
+import Message from '../components/Message';
+import Feedback from '../components/Feedback';
+
 import Client from '../components/Client';
 import Trainning from '../components/Trainning';
 import ShowDownload from '../components/ShowDownload';
@@ -63,9 +70,13 @@ class Application extends Component {
         <Schema name="default" {...defaultSchema} />
 
         <Route name="signIn" component={SignIn} type="reset" hideNavBar={true} />
+
         <Route name="leaderBoard" component={Leaderboard} title="排行榜"/>
         <Route name="productNews" component={ProductNews} title="产品新闻"/>
-        <Route name="detail" component={Detail}/>
+        <Route name="achievement" component={Achievement} title="我的业绩"/>
+        <Route name="profile" component={Profile} title="个人信息"/>
+        <Route name="message" component={Message} title="消息中心"/>
+        <Route name="feedback" component={Feedback} title="信息反馈"/>
 
         <TabRoute name="tabBar" barTint='#FFFFFF' tint="#32DEAF">
           <Route name="tab1" component={Master('#111')} title="我和微金所" tabItem={{icon: assets['home'], title: '我和微金所'}} />

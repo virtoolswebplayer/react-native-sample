@@ -7,13 +7,13 @@ import React, { Component, StyleSheet, Text, View,TextInput,Image,TouchableHighl
 
 import Dimensions from 'Dimensions';
 
-export default class News extends Component {
+export default class Message extends Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <Text onPress={this.props.actions.pop}>
-          新闻二级面面
+        <Text>
+          消息中心
         </Text>
       </View>
     );
