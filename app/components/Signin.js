@@ -51,7 +51,7 @@ export default class SignIn extends Component {
             <Text style={styles.greyFont}>忘记密码?</Text>
           </View>
         </View>
-        <TouchableHighlight onPress={actions.routes.home()}>
+        <TouchableHighlight onPress={actions.routes.tabBar.tab1()}>
           <View style={styles.signin}>
             <Text style={styles.whiteFont}>马上登陆</Text>
           </View>

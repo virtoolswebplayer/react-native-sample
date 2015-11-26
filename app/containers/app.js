@@ -18,8 +18,8 @@ import {
 import Detail from '../components/Detail';
 import Master from '../components/Master';
 import SignIn from '../components/SignIn';
-import Home from '../components/Home';
 import Leaderboard from '../components/Leaderboard';
+import ProductNews from '../components/ProductNews';
 
 const mapStateToProps = state => ({
   router: state.router,
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
 const defaultSchema = {
   navBar: NavBar,
   navLeftColor: '#fff', // back button color
-  navTint: 'red',
+  navTint: '#f21b1b',
   navTitleColor: '#FFFFFF',
   navTitleStyle: {
     fontFamily: 'Avenir Next',
@@ -46,11 +46,11 @@ const defaultSchema = {
 };
 
 const assets = {
-  'calendar': require('../../assets/thin-0021_calendar_month_day_planner.png'),
-  'home': require('../../assets/thin-0046_home_house.png'),
   'logo': require('../../assets/logo.png'),
-  'profile': require('../../assets/thin-0091_file_profile_user_personal.png'),
-  'video': require('../../assets/thin-0592_tv_televison_movie_news.png'),
+  'home': require('../../assets/tab1.png'),
+  'calendar': require('../../assets/tab2.png'),
+  'video': require('../../assets/tab3.png'),
+  'profile': require('../../assets/tab4.png'),
 };
 
 class Application extends Component {
@@ -59,16 +59,16 @@ class Application extends Component {
       <Router {...this.props} assets={assets} initial="signIn">
         <Schema name="default" {...defaultSchema} />
 
-        <Route name="home" component={Home} type="myhome" title="首屏"/>
         <Route name="signIn" component={SignIn} type="reset" hideNavBar={true} />
-        <Route name="detail" component={Detail} hideNavBar={true}/>
-        <Route name="leaderBoard" component={Leaderboard} title="排行榜" hideNavBar={true}/>
+        <Route name="leaderBoard" component={Leaderboard} title="排行榜"/>
+        <Route name="productNews" component={ProductNews} title="产品新闻"/>
+        <Route name="detail" component={Detail}/>
 
         <TabRoute name="tabBar" barTint='#FFFFFF' tint="#32DEAF">
-          <Route name="tab1" component={Master('#111')} title="Home" tabItem={{icon: assets['home'], title: 'Home'}} hideNavBar={true}/>
-          <Route name="tab2" component={Master('#222')} title="Calendar" tabItem={{icon: assets['calendar'], title: 'Calendar'}} hideNavBar={true}/>
-          <Route name="tab3" component={Master('#333')} title="Video" tabItem={{icon: assets['video'], title: 'Video'}} hideNavBar={true}/>
-          <Route name="tab4" component={Master('#444')} title="Profile" tabItem={{icon: assets['profile'], title: 'Profile'}} hideNavBar={true}/>
+          <Route name="tab1" component={Master('#111')} title="我和微金所" tabItem={{icon: assets['home'], title: '我和微金所'}} />
+          <Route name="tab2" component={Master('#222')} title="客户" tabItem={{icon: assets['calendar'], title: '客户'}} />
+          <Route name="tab3" component={Master('#333')} title="培训" tabItem={{icon: assets['video'], title: '培训'}} />
+          <Route name="tab4" component={Master('#444')} title="展业" tabItem={{icon: assets['profile'], title: '展业'}} />
         </TabRoute>
       </Router>
     );

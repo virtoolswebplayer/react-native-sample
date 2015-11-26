@@ -7,18 +7,19 @@ import React, { Component, StyleSheet, Text, View,TextInput,Image,TouchableHighl
 
 import Dimensions from 'Dimensions';
 
-export default class Leaderboard extends Component {
+export default class News extends Component {
 
   render() {
     return (
       <View style={styles.container}>
         <Text>
-          排行榜二级面面
+          新闻二级面面
         </Text>
       </View>
     );
   }
 }
+
 var styles = StyleSheet.create({
   container:{
     backgroundColor: '#efefef',
