@@ -5,92 +5,76 @@ import Button from 'react-native-button';
 import Animatable,{View,Text} from 'react-native-animatable';
 import { Icon } from 'react-native-icons';
 import Dimensions from 'Dimensions';
+import _ from 'lodash';
+
+const GridData = [
+  {name: '产口新闻', icon: 'fontawesome|hacker-news', iconColor: 'gray', action: 'productNews'},
+  {name: '排行榜', icon: 'fontawesome|sort-amount-desc', iconColor: 'gray', action: 'leaderBoard'},
+  {name: '我的业绩', icon: 'fontawesome|users', iconColor: 'gray', action: 'leaderBoard'},
+  {name: '个人信息', icon: 'fontawesome|search', iconColor: 'gray', action: 'leaderBoard'},
+  {name: '消息中心', icon: 'fontawesome|users', iconColor: 'gray', action: 'leaderBoard'},
+  {name: '信息反馈', icon: 'fontawesome|link', iconColor: 'gray', action: 'leaderBoard'},
+];
+
+/**
+ * 计算当前屏幕的宽度和高度
+ */
+const {width,height} = Dimensions.get('window');
 
 export default Master = (backgroundColor = '#fefefe') => class extends Component {
-  render() {
 
+//  getInitialState() {
+//    return {
+//      currentScreenWidth: width,
+//      currentScreenHeight: height,
+//    }
+//  }
+
+  calculatedSize() {
+    let size = width / 3;
+    return {width: size, height: size}
+  }
+
+  renderRow() {
 
     const { actions } = this.props;
 
+    return GridData.map(item => {
+        return (
+          <TouchableWithoutFeedback onPress={actions.routes[item.action]()}>
+            <View style={[styles.orderItem,this.calculatedSize()]}>
+              <Icon
+                name={item.icon}
+                size={40}
+                color={item.iconColor}
+                style={{width:40,height:40,marginBottom:20,}}
+              />
+              <Text>{item.name}</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        );
+      }
+    )
+  }
+
+  renderImage() {
     return (
-      <View  style={styles.container}>
+      <View style={{height:200}}>
+        <Image
+          style={{height: 200, width: 400, resizeMode: Image.resizeMode.cover}}
+          source={{uri: 'http://img.alicdn.com/tps/TB1UQCwKFXXXXa1XVXXXXXXXXXX-770-360.jpg'}}></Image>
+      </View>
+    );
+  }
+
+  render() {
+    const { actions } = this.props;
+    return (
+      <View style={styles.container}>
         <View animation="fadeIn" duration={500} style={styles.body}>
-          <ScrollView style={{flex:1}}>
-            <View style={{height:150}}>
-              <Image
-                style={{height: 300,resizeMode: Image.resizeMode.cover}}
-                source={{uri: 'http://img.alicdn.com/tps/TB1UQCwKFXXXXa1XVXXXXXXXXXX-770-360.jpg'}}></Image>
-            </View>
-            <View style={styles.bodyList}>
-              <TouchableWithoutFeedback onPress={actions.routes.productNews()}>
-                <View style={styles.orderItem}>
-                  <Icon
-                    name='fontawesome|hacker-news'
-                    size={40}
-                    color='#ccc'
-                    style={{width:40,height:40,marginBottom:20,}}
-                  />
-                  <Text>产品新闻</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback onPress={actions.routes.leaderBoard()}>
-                <View style={styles.orderItem} ref="view">
-                  <Icon
-                    name='fontawesome|sort-amount-desc'
-                    size={40}
-                    color='#ccc'
-                    style={{width:40,height:40,marginBottom:20,}}
-                  />
-                  <Text>排行榜</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback onPress={actions.routes.tabBar.tab1()}>
-                <View style={styles.orderItem} ref="view1">
-                  <Icon
-                    name='fontawesome|users'
-                    size={40}
-                    color='#ccc'
-                    style={{width:40,height:40,marginBottom:20,}}
-                  />
-                  <Text>我的业绩</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-            <View style={styles.bodyList}>
-              <TouchableWithoutFeedback onPress={actions.routes.tabBar.tab1()}>
-                <View style={styles.orderItem}>
-                  <Icon
-                    name='fontawesome|users'
-                    size={40}
-                    color='#ccc'
-                    style={{width:40,height:40,marginBottom:20,}}
-                  />
-                  <Text>个人信息</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback onPress={actions.routes.tabBar.tab1()}>
-                <View style={styles.orderItem}>
-                  <Icon
-                    name='fontawesome|search'
-                    size={40}
-                    color='#ccc'
-                    style={{width:40,height:40,marginBottom:20,}}
-                  />
-                  <Text>消息中心</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback onPress={actions.routes.tabBar.tab1()}>
-                <View style={styles.orderItem}>
-                  <Icon
-                    name='fontawesome|unlink'
-                    size={40}
-                    color='#ccc'
-                    style={{width:40,height:40,marginBottom:20,}}
-                  />
-                  <Text>信息反馈</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
+          <ScrollView style={{flex:1}} contentContainerStyle={{flexDirection:'row',flexWrap:'wrap'}}>
+            {this.renderImage()}
+            {this.renderRow()}
           </ScrollView>
         </View>
       </View>
@@ -133,7 +117,7 @@ var styles = StyleSheet.create({
   },
   orderItem: {
     backgroundColor: '#efefef',
-    flex: 1,
+    width: 100,
     height: 160,
     borderWidth: 1 / PixelRatio.get(),
     borderColor: '#ddd',

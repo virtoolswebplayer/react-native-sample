@@ -20,6 +20,9 @@ import Master from '../components/Master';
 import SignIn from '../components/SignIn';
 import Leaderboard from '../components/Leaderboard';
 import ProductNews from '../components/ProductNews';
+import Client from '../components/Client';
+import Trainning from '../components/Trainning';
+import ShowDownload from '../components/ShowDownload';
 
 const mapStateToProps = state => ({
   router: state.router,
@@ -66,9 +69,9 @@ class Application extends Component {
 
         <TabRoute name="tabBar" barTint='#FFFFFF' tint="#32DEAF">
           <Route name="tab1" component={Master('#111')} title="我和微金所" tabItem={{icon: assets['home'], title: '我和微金所'}} />
-          <Route name="tab2" component={Master('#222')} title="客户" tabItem={{icon: assets['calendar'], title: '客户'}} />
-          <Route name="tab3" component={Master('#333')} title="培训" tabItem={{icon: assets['video'], title: '培训'}} />
-          <Route name="tab4" component={Master('#444')} title="展业" tabItem={{icon: assets['profile'], title: '展业'}} />
+          <Route name="tab2" component={Client} title="客户" tabItem={{icon: assets['calendar'], title: '客户'}} />
+          <Route name="tab3" component={Trainning} title="培训" tabItem={{icon: assets['video'], title: '培训'}} />
+          <Route name="tab4" component={ShowDownload} title="展业" tabItem={{icon: assets['profile'], title: '展业'}} />
         </TabRoute>
       </Router>
     );
