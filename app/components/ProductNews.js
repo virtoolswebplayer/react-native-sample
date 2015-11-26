@@ -1,29 +1,52 @@
-/**
- * Created by gaoletian on 15/11/25.
- */
-'use strict';
+import React,{StyleSheet,ScrollView,Image} from 'react-native';
+import {View,Text} from 'react-native-animatable';
+import Button from 'react-native-button';
 
-import React, { Component, StyleSheet, Text, View,TextInput,Image,TouchableHighlight } from 'react-native';
+let Dimensions = require('Dimensions');
+let {width,height} = Dimensions.get('window');
 
-import Dimensions from 'Dimensions';
+const bg = {
+  uri:'http://b.hiphotos.baidu.com/zhidao/pic/item/7aec54e736d12f2e20df7cc74dc2d562843568bb.jpg'
+};
 
-export default class News extends Component {
+class ProductNews extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text onPress={this.props.actions.pop}>
-          新闻二级面面
-        </Text>
+      <View animation="zoomIn" duration={100} style={styles.container}>
+        <Image style={styles.bg} source={bg}/>
+        <ScrollView style={styles.autoFit}>
+          <Button
+            style={{fontSize: 20, color: 'green'}}
+            styleDisabled={{color: 'red'}}
+            onPress={this.props.actions.pop}>
+            返回
+          </Button>
+        </ScrollView>
       </View>
     );
   }
 }
 
+
 var styles = StyleSheet.create({
-  container:{
+  container: {
     backgroundColor: '#efefef',
-    alignItems:'center',
+    alignItems: 'center',
     flex: 1
+  },
+
+  autoFit:{
+    flex:1
+  },
+
+  bg:{
+    position:'absolute',
+    left:0,
+    top:0,
+    width:width,
+    height:height,
   }
 });
+
+export default ProductNews

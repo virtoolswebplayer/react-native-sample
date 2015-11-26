@@ -62,7 +62,7 @@ export default Master = (backgroundColor = '#fefefe') => class extends Component
       <View style={{height:200}}>
         <Image
           style={{height: 200,width:width, resizeMode: Image.resizeMode.cover}}
-          source={{uri: 'http://img.alicdn.com/tps/TB1UQCwKFXXXXa1XVXXXXXXXXXX-770-360.jpg'}}></Image>
+          source={require('../../assets/showNewsImage.jpg')}></Image>
       </View>
     );
   }

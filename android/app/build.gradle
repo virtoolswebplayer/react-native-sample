@@ -63,6 +63,9 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    /*
+     * 签名配置
+     */
     signingConfigs {
             release {
                 storeFile file(MYAPP_RELEASE_STORE_FILE)
@@ -73,16 +76,20 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false  // Set this to true to enable Proguard
+            minifyEnabled true  // 设置为true 将启用混淆压缩
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release //添加这句话引用签名配置
         }
     }
 }
-
+/*
+ * 依赖配置
+ */
 dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:0.14.+"
+
+    // 预先编译 react-native-icons
     compile project(':react-native-icons')
 }

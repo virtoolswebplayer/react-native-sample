@@ -14,7 +14,7 @@ import {
   Schema,
   TabBar,
   TabRoute
-} from 'react-native-router-redux';
+} from '../react-native-router-redux/index';
 import Detail from '../components/Detail';
 import SignIn from '../components/SignIn.android';
 
