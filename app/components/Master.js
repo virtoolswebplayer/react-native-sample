@@ -8,7 +8,7 @@ import Dimensions from 'Dimensions';
 import _ from 'lodash';
 
 const GridData = [
-  {name: '产口新闻', icon: 'fontawesome|hacker-news', iconColor: 'gray', action: 'productNews'},
+  {name: '产品新闻', icon: 'fontawesome|hacker-news', iconColor: 'gray', action: 'productNews'},
   {name: '排行榜', icon: 'fontawesome|sort-amount-desc', iconColor: 'gray', action: 'leaderBoard'},
   {name: '我的业绩', icon: 'fontawesome|users', iconColor: 'gray', action: 'achievement'},
   {name: '个人信息', icon: 'fontawesome|search', iconColor: 'gray', action: 'profile'},

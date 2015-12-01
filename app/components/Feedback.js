@@ -5,6 +5,8 @@
 
 import React, { Component, StyleSheet, Text, View,TextInput,Image,TouchableHighlight } from 'react-native';
 
+import Button from 'react-native-button';
+
 import Dimensions from 'Dimensions';
 
 export default class Feedback extends Component {
@@ -15,6 +17,18 @@ export default class Feedback extends Component {
         <Text>
           信息反馈
         </Text>
+
+        <TextInput
+          numberOfLines = {6}
+          placeholder="请输入您要反馈的信息"
+          multiline={true}
+          autoFocus={true}>
+
+        </TextInput>
+
+        <Button>
+          提交反馈
+        </Button>
       </View>
     );
   }
