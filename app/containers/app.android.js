@@ -30,6 +30,7 @@ import Feedback from '../components/Feedback';
 import Client from '../components/Client';
 import Trainning from '../components/Trainning';
 import ShowDownload from '../components/ShowDownload';
+import NewsDetail from '../components/NewsDetail';
 
 const mapStateToProps = state => ({
   router: state.router,
@@ -99,6 +100,7 @@ class Application extends Component {
         <Route name="profile" component={Profile} title="个人信息" hideNavBar={true}/>
         <Route name="message" component={Message} title="消息中心" hideNavBar={true}/>
         <Route name="feedback" component={Feedback} title="信息反馈" hideNavBar={true}/>
+        <Route name="newsDetail" component={NewsDetail} title="新闻页" hideNavBar={true}/>
 
         <TabRoute name="tabBar" barTint='#FFFFFF' tint="#32DEAF">
           <Route name="tab1" component={Master('#111')} title="我和微金所" tabItem={{icon: assets['home'], title: '我和微金所'}} hideNavBar={true}/>

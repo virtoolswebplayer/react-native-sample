@@ -30,6 +30,9 @@ export default Master = (backgroundColor = '#fefefe') => class extends Component
     }
   }
 
+  /**
+   * 计算单元格宽度
+   */
   calculatedSize() {
     let size = width / 3;
     return {width: size, height: size}
@@ -71,7 +74,7 @@ export default Master = (backgroundColor = '#fefefe') => class extends Component
     const { actions } = this.props;
     return (
       <View style={styles.container}>
-        <View animation="zoomInRight" duration={500} style={styles.body}>
+        <View style={styles.body}>
           <ScrollView style={{flex:1}} contentContainerStyle={{flexDirection:'row',flexWrap:'wrap'}}>
             {this.renderImage()}
             {this.renderRow()}

@@ -4,15 +4,18 @@ import { NavBar } from './src/NavBar';
 import TabBar from './src/TabBar';
 import * as actions from './src/actions';
 import reducer from './src/reducer';
-
+// 动作类型
 const actionTypes = actions.actionTypes;
-
+// 动作类型映射
 const actionMap = {
   push: actionTypes.ROUTER_PUSH,
   replace: actionTypes.ROUTER_REPLACE,
   reset: actionTypes.ROUTER_RESET,
 };
 
+/**
+ * 创建一些空组件
+ */
 class Schema extends React.Component {
   className() {
     return 'Schema';
@@ -43,7 +46,14 @@ class TabRoute extends React.Component {
   }
 }
 
+/**
+ * 主路由组件
+ */
 class Router extends React.Component {
+  /**
+   * 类构造函数
+   * @param props
+   */
   constructor(props) {
     super(props);
 
@@ -97,6 +107,7 @@ class Router extends React.Component {
           if (props.initial === tabName) {
             this.initial.tabBarName = tabBarName;
           }
+
           actions.routes[tabBarName][tabName] = (data = {}) => e => {
             if (typeof(data) !== 'object') {
               data = { data }
@@ -267,9 +278,14 @@ class Router extends React.Component {
     }
   }
 
+  /**
+   * 路由处理
+   * @param router
+   */
   handleRouteChange(router) {
     const { data = {}, mode } = router;
 
+    /** 底部选项卡处理 */
     if (mode === actionTypes.ROUTER_CHANGE_TAB) {
       let routes = [];
 
@@ -284,6 +300,7 @@ class Router extends React.Component {
       this.refs.nav.immediatelyResetRouteStack(routes);
     }
 
+    /** pop 返回处理*/
     if (mode === actionTypes.ROUTER_POP) {
       const num = data.num || 1;
       const routes = this.refs.nav.getCurrentRoutes();
@@ -294,12 +311,14 @@ class Router extends React.Component {
       }
     }
 
+    /** push到路由表*/
     if (mode === actionTypes.ROUTER_PUSH) {
       this.refs.nav.push(this.getRoute(
         this.routes[router.currentRoute], router
       ));
     }
 
+    /** replace模式路由表*/
     if (mode === actionTypes.ROUTER_REPLACE) {
       this.refs.nav.replace(this.getRoute(
         this.routes[router.currentRoute], router

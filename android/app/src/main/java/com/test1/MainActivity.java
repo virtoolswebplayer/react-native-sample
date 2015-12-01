@@ -14,7 +14,7 @@ import com.facebook.soloader.SoLoader;
 import com.smixx.reactnativeicons.IconFont; // <--- import this if you want to specify which fonts to load
 import com.smixx.reactnativeicons.ReactNativeIcons;  // <--- import
 
-import java.util.Arrays; // <--- import this if you want to specify which fonts to load
+// import java.util.Arrays; // <--- import this if you want to specify which fonts to load
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
@@ -31,10 +31,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
-                .addPackage(new ReactNativeIcons(Arrays.asList(
-                        new IconFont("typicons", "typicons.ttf"),
-                        new IconFont("octicons", "octicons.ttf")
-                )))              // <------ add here
+                .addPackage(new ReactNativeIcons())              // <------ add here
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
@@ -81,7 +78,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
         super.onResume();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onResume(this);
+            mReactInstanceManager.onResume(this, this);
         }
     }
 }
