@@ -28,10 +28,10 @@ const rightButton = (props = {}) => {
   }
 
   return {
-    handler: props.navRightHandler || () => {},
+    handler: props.navRightHandler || (() => {}),
     style: props.navRightStyle || {},
     tintColor: props.navRightColor || '#037AFF',
-    title: props.navRightTitle || '',
+    title: props.navRightTitle || ''
   };
 };
 

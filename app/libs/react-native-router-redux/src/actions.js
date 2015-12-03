@@ -6,7 +6,7 @@ export const actionTypes = createConstants(
   'ROUTER_POP',
   'ROUTER_PUSH',
   'ROUTER_REPLACE',
-  'ROUTER_RESET',
+  'ROUTER_RESET'
 );
 
 const filter = data => {

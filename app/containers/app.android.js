@@ -9,7 +9,7 @@ import { connect } from 'react-redux/native';
 import {
   actions as routerActions,
   NavBar, Route, Router, Schema, TabBar, TabRoute
-} from '../react-native-router-redux/index';
+} from '../libs/react-native-router-redux/index';
 
 import Detail from '../components/Detail';
 import SignIn from '../components/SignIn.android';
@@ -67,11 +67,10 @@ const assets = {
 let _actions;
 BackAndroid.addEventListener('hardwareBackPress', () => {
   if (_actions) {
-    _actions.pop();
-    console.log(_actions);
-    return true;
+    _actions.pop(); // 回到上一个路由状态
+    return true; // 返回true,不退出程序
   }
-  return false;
+  return false; // 返回false,退出程序
 });
 
 class Application extends Component {

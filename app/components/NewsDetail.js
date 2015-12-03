@@ -83,17 +83,19 @@ class NewsDetail extends Component {
   render() {
     return (
       <View>
-        <View style={{flexDirection:'row',justifyContent:'center',height:30,backgroundColor:'#FF3366',padding:10}}>
-          <TouchableOpacity onPress={this.props.actions.pop} style={{flex:1,height:30}}>
-            <View style={{flex:1,height:30}}>
+        <View style={{flexDirection:'row',justifyContent:'center',height:30,backgroundColor:'#FF3366',padding:5}}>
+          <TouchableOpacity onPress={this.props.actions.pop} >
+            <View style={{flex:1}}>
               <Icon
-                name='fontawesome|arrow-left'
+                name='fontawesome|long-arrow-left'
                 size={20}
                 color='white'
                 style={{width:20,height:20,alignSelf:'flex-start'}}
               />
             </View>
           </TouchableOpacity>
+          <View style={{flex:5,alignItems:'center'}}>
+          </View>
           <View style={{flex:1}}>
             <Icon
               name='fontawesome|share-alt'

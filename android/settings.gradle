@@ -3,9 +3,9 @@ rootProject.name = 'test1'
 include ':app'
 
 include ':react-native-icons'
+include ':app', ':react-native-code-push'
 
 project(':react-native-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-icons/android')
-
-
+project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
 
 

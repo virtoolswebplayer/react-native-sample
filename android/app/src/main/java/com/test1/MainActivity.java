@@ -15,6 +15,8 @@ import com.smixx.reactnativeicons.IconFont; // <--- import this if you want to s
 import com.smixx.reactnativeicons.ReactNativeIcons;  // <--- import
 
 // import java.util.Arrays; // <--- import this if you want to specify which fonts to load
+// codePush 1: 引用codePush
+import com.microsoft.codepush.react.CodePush;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
@@ -26,11 +28,17 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
         super.onCreate(savedInstanceState);
         mReactRootView = new ReactRootView(this);
 
+        // codePush 2: 初始化codePush 此处填入在codepush官网申请的 'develop key'
+        CodePush codePush = new CodePush("057IcGR6dAqyZEe20VBfdiTS6RzrEyVoijw4g", this);
+
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
-                .setBundleAssetName("index.android.bundle")
+                // codePush 3: 将 .setBundleAssetName("index.android.bundle") 替换为 .setJSBundleFile(codePush.getBundleUrl("index.android.bundle"))
+                .setJSBundleFile(codePush.getBundleUrl("index.android.bundle"))
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
+                // codePush 4: 把CodePush暴露给javascript
+                .addPackage(codePush.getReactPackage())
                 .addPackage(new ReactNativeIcons())              // <------ add here
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)

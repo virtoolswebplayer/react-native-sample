@@ -16,7 +16,7 @@ export default class SignIn extends Component {
 
     return (
       <View style={styles.container}>
-
+        <Image style={styles.bg} source={require('../../assets/loginBg.jpg')}/>
         <View animation="fadeIn" delay={100} style={styles.header}>
           <Image style={styles.logo} source={require('../../assets/logo.png')}/>
         </View>
@@ -60,7 +60,7 @@ var styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#fff',
 
   },
   bg: {
