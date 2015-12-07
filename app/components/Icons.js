@@ -6,7 +6,7 @@ import {Icon} from 'react-native-icons';
 import Dimensions from 'Dimensions';
 import awesome from '../../node_modules/react-native-icons/fonts/fontawesome.json';
 
-const iconNames = Object.keys(awesome);
+let iconNames = Object.keys(awesome);
 
 /**
  * 计算当前屏幕的宽度和高度
@@ -24,6 +24,7 @@ export default class Icons extends Component {
   }
 
   renderIcons() {
+    iconNames.reverse().pop();
     return iconNames.map(name => {
       return (
         <View style={[styles.gridCell,this.calculatedSize()]}>

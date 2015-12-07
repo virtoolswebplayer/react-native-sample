@@ -18,9 +18,8 @@ export default class SignIn extends Component {
       <View style={styles.container}>
         <Image style={styles.bg} source={require('../../assets/loginBg.jpg')}/>
         <View animation="fadeIn" delay={100} style={styles.header}>
-          <Image style={styles.logo} source={require('../../assets/logo.png')}/>
         </View>
-        <View style={styles.inputs}  animation="fadeIn" delay={300}>
+        <View style={styles.inputs} animation="fadeIn" delay={300}>
           <View style={styles.inputContainer}>
             <Image style={styles.inputUsername} source={{uri: 'http://i.imgur.com/iVVVMRX.png'}}/>
             <TextInput
@@ -45,7 +44,7 @@ export default class SignIn extends Component {
           </View>
         </View>
         <TouchableHighlight onPress={actions.routes.tabBar.tab1()}>
-          <View style={styles.signin}  animation="fadeIn" delay={500}>
+          <View style={styles.signin} animation="fadeIn" delay={500}>
             <Text style={styles.whiteFont}>马上登陆</Text>
           </View>
         </TouchableHighlight>

@@ -9,7 +9,7 @@ import Dimensions from 'Dimensions';
 
 const Screen = Dimensions.get('window');
 
-export default class Message extends Component {
+class Message extends Component {
 
   render() {
     return (
@@ -41,3 +41,5 @@ var styles = StyleSheet.create({
     flex: 1
   }
 });
+
+export default Message;

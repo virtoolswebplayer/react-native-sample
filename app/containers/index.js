@@ -6,17 +6,15 @@
 import React, { Component,Platform } from 'react-native';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux/native';
-import * as reducers from '../reducers';
+import * as reducers from '../reducers/index';
 
-import AppIos from './app.ios';
-import AppAndroid from './app.android'
+const Application = (Platform.OS === 'ios') ? require('./app.ios.js') : require('./app.android.js');
 
-var Application = (Platform.OS === 'ios') ? AppIos : AppAndroid
 
 const reducer = combineReducers(reducers);
 const store = createStore(reducer);
 
-export default class AppContainer extends Component {
+class AppContainer extends Component {
   render() {
     return (
       <Provider store={store}>
@@ -25,3 +23,5 @@ export default class AppContainer extends Component {
     );
   }
 }
+
+export default AppContainer;

@@ -13,7 +13,7 @@ const GridData = [
   {name: '我的业绩', icon: 'fontawesome|users', iconColor: 'gray', action: 'achievement'},
   {name: '个人信息', icon: 'fontawesome|search', iconColor: 'gray', action: 'profile'},
   {name: '消息中心', icon: 'fontawesome|users', iconColor: 'gray', action: 'message'},
-  {name: '信息反馈', icon: 'fontawesome|link', iconColor: 'gray', action: 'feedback'},
+  {name: '信息反馈', icon: 'fontawesome|link', iconColor: 'gray', action: 'feedback'}
 ];
 
 /**
@@ -21,19 +21,21 @@ const GridData = [
  */
 const {width,height} = Dimensions.get('window');
 
-export default Master = (backgroundColor = '#fefefe') => class extends Component {
+class Master extends Component {
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       currentScreenWidth: width,
-      currentScreenHeight: height,
+      currentScreenHeight: height
     }
   }
 
   /**
    * 计算单元格宽度
    */
-  calculatedSize() {
+  static calculatedSize() {
     let size = width / 3;
     return {width: size, height: size}
   }
@@ -45,12 +47,12 @@ export default Master = (backgroundColor = '#fefefe') => class extends Component
     return GridData.map(item => {
         return (
           <TouchableHighlight onPress={actions.routes[item.action]()}>
-            <View style={[styles.gridCell,this.calculatedSize()]}>
+            <View style={[styles.gridCell,Master.calculatedSize()]}>
               <Icon
                 name={item.icon}
                 size={40}
                 color={item.iconColor}
-                style={{width:40,height:40,marginBottom:20,}}
+                style={{width:40,height:40,marginBottom:20}}
               />
               <Text>{item.name}</Text>
             </View>
@@ -65,13 +67,13 @@ export default Master = (backgroundColor = '#fefefe') => class extends Component
       <View style={{height:200}}>
         <Image
           style={{height: 200,width:width, resizeMode: Image.resizeMode.cover}}
-          source={require('../../assets/showNewsImage.jpg')}></Image>
+          source={require('../../assets/showNewsImage.jpg')}
+        />
       </View>
-    );
+    )
   }
 
   render() {
-    const { actions } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.body}>
@@ -88,14 +90,14 @@ export default Master = (backgroundColor = '#fefefe') => class extends Component
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#efefef',
+    backgroundColor: '#efefef'
   },
   body: {
-    flex: 1,
+    flex: 1
   },
   footer: {
     backgroundColor: '#efefef',
-    height: 60,
+    height: 60
   },
   naviItem: {
     flex: 1,
@@ -122,6 +124,8 @@ var styles = StyleSheet.create({
     height: 48,
     borderRadius: 24,
     backgroundColor: '#cecece',
-    marginVertical: 10,
+    marginVertical: 10
   }
 });
+
+export default Master

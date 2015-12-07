@@ -1,20 +1,13 @@
 'use strict';
 
-import React,{
-  Image, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, ViewPagerAndroid, ScrollView} from 'react-native';
+import React,{Image, StyleSheet,Text, TouchableWithoutFeedback, TouchableOpacity, ScrollView} from 'react-native';
+
+import ViewPage from 'react-native-viewpager';
 
 import Dimensions from 'Dimensions';
 let {width,height} = Dimensions.get('window');
 
 import {View} from 'react-native-animatable'
-
-const PAGES      = 3;
-const BGCOLOR    = ['#fff', '#fff', '#fff'];
-const IMAGE_URIS = [
-  'http://apod.nasa.gov/apod/image/1410/20141008tleBaldridge001h990.jpg',
-  'http://apod.nasa.gov/apod/image/1409/volcanicpillar_vetter_960.jpg',
-  'http://apod.nasa.gov/apod/image/1409/m27_snyder_960.jpg',
-];
 
 const newsData = {
   n1: [
@@ -24,15 +17,15 @@ const newsData = {
     '宝鸡女子宜家买床褥半夜被熏醒 退货几经周折',
     '桑兰17年前的摔伤真相大白',
     '桑兰一直指控罗马尼亚体操队的教练',
-    '媒体喧哗与著名的“跨国天价官司',
+    '媒体喧哗与著名的“跨国天价官司'
   ],
   n2: [
     '第一条',
     '第二条',
-    '第三条',
+    '第三条'
   ],
-  n3: [],
-}
+  n3: []
+};
 
 
 class Button extends React.Component {
@@ -65,8 +58,8 @@ class SubNaviTab extends React.Component {
   }
 
   render() {
-    let fractionalPosition = (this.props.progress.position + this.props.progress.offset);
-    let leftOffset         = fractionalPosition * (width / PAGES);
+    let fractionalPosition = 100;//(this.props.progress.position + this.props.progress.offset);
+    let leftOffset = 100;//fractionalPosition * (width / PAGES);
 
     return (
       <View style={{height:40, flexDirection:'row',width:width}}>
@@ -79,7 +72,7 @@ class SubNaviTab extends React.Component {
         <View style={{flex:1,height: 39,alignItems:'center',justifyContent:'center',backgroundColor:'#efefef'}}>
           <Text>推荐消息</Text>
         </View>
-        <View style={[styles.bg,{width:width/3,height:5,top:35,left:leftOffset,backgroundColor:'#FF3366'}]}></View>
+        <View style={[styles.bg,{width:width/3,height:5,top:35,left:leftOffset,backgroundColor:'#FF3366'}]}/>
       </View>
     )
   }
@@ -89,14 +82,15 @@ class ProductNews extends React.Component {
 
   constructor(props) {
     super(props);
+
+    const dataSource = new ViewPage.DataSource({
+      pageHasChanged: (p1, p2) => p1 !== p2
+    });
+
     this.state = {
-      page: 0,
-      animationsAreEnabled: true,
-      progress: {
-        position: 0,
-        offset: 0
-      }
-    }
+      dataSource: dataSource.cloneWithPages([1, 2, 3])
+    };
+
 
     this.onPageSelected = (e) => {
       this.setState({page: e.nativeEvent.position});
@@ -104,13 +98,13 @@ class ProductNews extends React.Component {
 
     this.onPageScroll = (e) => {
       this.setState({progress: e.nativeEvent});
-    }
+    };
 
 
     this.move = (delta)=> {
       var page = this.state.page + delta;
       this.go(page);
-    }
+    };
 
     this.go = (page)=> {
       if (this.state.animationsAreEnabled) {
@@ -118,9 +112,9 @@ class ProductNews extends React.Component {
       }
 
       this.setState({page});
-    }
+    };
 
-    this.renderNews =()=> {
+    this.renderNews = ()=> {
       return newsData.n1.map(item => {
         return (
           <TouchableOpacity onPress={this.props.actions.routes.newsDetail()}>
@@ -130,45 +124,36 @@ class ProductNews extends React.Component {
           </TouchableOpacity>
         )
       })
-    }
-  }
+    };
 
-
-
-  render() {
-    let pages = [];
-    for (var i = 0; i < PAGES; i++) {
-      var pageStyle = {
-        backgroundColor: BGCOLOR[i % BGCOLOR.length],
-        alignItems: 'center',
-      };
-      pages.push(
-        <View key={i} style={pageStyle} collapsable={false}>
-          <ScrollView style={{width:width,height:height,backgroundColor:'#efefef'}}>
-            <Image
-              style={styles.image}
-              source={{uri: IMAGE_URIS[i % BGCOLOR.length]}}
-            />
+    this._renderPage = ()=> {
+      return (
+        <View>
+          <ScrollView style={{width:width,height:height-100,backgroundColor:'#efefef'}}>
             {this.renderNews()}
           </ScrollView>
         </View>
-      );
+      )
+    };
+
+    this._onChangePage = ()=> {
+
     }
-    var { page, animationsAreEnabled } = this.state;
+  }
+
+  render() {
     return (
 
       <View style={styles.container}>
         <SubNaviTab progress={this.state.progress}/>
-        <ViewPagerAndroid
-          style={styles.viewPager}
-          initialPage={0}
-          onPageScroll={this.onPageScroll}
-          onPageSelected={this.onPageSelected}
-          ref={viewPager => { this.viewPager = viewPager; }}>
-          {pages}
-        </ViewPagerAndroid>
-        <View style={{height:50}}>
-        </View>
+        <ViewPage
+          style={[styles.viewPager]}
+          autoPlay={false}
+          isLoop={false}
+          dataSource={this.state.dataSource}
+          renderPage={this._renderPage}
+          onChangePage={this._onChangePage}
+        />
       </View>
     );
   }

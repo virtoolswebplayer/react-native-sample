@@ -23,13 +23,15 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
     private ReactInstanceManager mReactInstanceManager;
     private ReactRootView mReactRootView;
 
+    private CodePush codePush;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReactRootView = new ReactRootView(this);
 
         // codePush 2: 初始化codePush 此处填入在codepush官网申请的 'develop key'
-        CodePush codePush = new CodePush("057IcGR6dAqyZEe20VBfdiTS6RzrEyVoijw4g", this);
+        codePush = new CodePush("057IcGR6dAqyZEe20VBfdiTS6RzrEyVoijw4g", this);
 
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())

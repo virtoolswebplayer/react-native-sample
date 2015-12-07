@@ -1,0 +1,4 @@
+node_modules/**
+ios/**
+android/**
+app/libs/react-native-router-redux/**

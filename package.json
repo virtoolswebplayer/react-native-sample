@@ -15,7 +15,11 @@
     "react-native-navbar": "github:malkomalko/react-native-navbar",
     "react-native-scrollable-tab-view": "^0.1.10",
     "react-native-tabs": "github:malkomalko/react-native-tabs",
+    "react-native-viewpager": "^0.1.4",
     "react-redux": "^3.1.0",
     "redux": "^3.0.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6"
   }
 }

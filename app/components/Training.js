@@ -7,7 +7,7 @@ import React, { Component, StyleSheet, Text, View,TextInput,Image,TouchableHighl
 
 import Dimensions from 'Dimensions';
 
-export default class Trainning extends Component {
+class Training extends Component {
 
   render() {
     return (
@@ -27,3 +27,5 @@ var styles = StyleSheet.create({
     flex: 1
   }
 });
+
+export default Training;

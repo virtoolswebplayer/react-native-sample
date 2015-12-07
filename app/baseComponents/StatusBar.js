@@ -9,7 +9,7 @@ class NaviBar extends Component{
   }
 
   static defaultProps = {
-    hide: false,
+    hide: false
   }
 }
 
@@ -22,5 +22,5 @@ var styles = StyleSheet.create({
 
   title:{
     color: 'white'
-  },
+  }
 });
